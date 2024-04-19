@@ -29,7 +29,12 @@ jobs:
         with:
           terraform_version: 1.8.1
 
-      - name: "Execute terraform plan for Dataflow"
+      - name: "Terraform init backend config"
         working-directory: ./terraform
         run: |
           terraform init -backend-config "bucket=${{ secrets.TF_STATE_BUCKET }}"
+
+      - name: "Terraform apply changes"
+        working-directory: ./terraform
+        run: |
+          terraform apply -auto-approve
