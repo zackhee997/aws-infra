@@ -30,6 +30,6 @@ jobs:
           terraform_version: 1.8.1
 
       - name: "Execute terraform plan for Dataflow"
-        working-directory: ./terraform/environments/production
+        working-directory: ./terraform
         run: |
           terraform init -backend-config "bucket=${{ secrets.TF_STATE_BUCKET }}"
