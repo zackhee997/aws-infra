@@ -32,12 +32,12 @@ jobs:
         with:
           terraform_version: 1.8.1
 
-      - name: "Terraform init backend config"
-        working-directory: ./terraform
+      - name: "Terraform apply for networking example"
+        env: 
+          PROJECT: networking-example
+        working-directory: ./terraform/networking-example
         run: |
           terraform init -backend-config "bucket=${{ secrets.TF_STATE_BUCKET }}"
-
-      - name: "Terraform apply changes"
-        working-directory: ./terraform
-        run: |
-          terraform apply -auto-approve
+          terraform apply -auto-approve \
+                          -var="project=${{ env.PROJECT }}" \
+                          -var="region=${{ env.REGION }}"
