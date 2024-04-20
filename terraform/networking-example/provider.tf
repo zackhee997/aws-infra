@@ -6,11 +6,11 @@ terraform {
   }
   backend "s3" {
     bucket = "state-bucket-tf"
-    key    = "${var.project}/terraform.tfstate"
+    key    = "networking-example/terraform.tfstate"
     region = var.region
   }
 }
 
 provider "aws" {
-  region = var.region
+  region = "ap-southeast-1"
 }
